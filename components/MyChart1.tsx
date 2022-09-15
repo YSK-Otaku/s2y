@@ -1,7 +1,7 @@
 import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from "victory";
 import {VictoryStack} from "victory-stack";
 
-export const MyChart1 = (props: { tickFormat: (x: any) => string, data: ({ x: number; y: number })[], data1: ({ x: number; y: number })[] }) => {
+export const MyChart1 = (props: { tickFormat: (x: number) => string, data: ({ x: number; y: number })[][] }) => {
     return <VictoryChart
         domainPadding={20}
         theme={VictoryTheme.material}
@@ -15,16 +15,14 @@ export const MyChart1 = (props: { tickFormat: (x: any) => string, data: ({ x: nu
             tickFormat={props.tickFormat}
         />
         <VictoryStack>
-            <VictoryBar
-                data={props.data}
-                x="x"
-                y="y"
-            />
-            <VictoryBar
-                data={props.data1}
-                x="x"
-                y="y"
-            />
+            {props.data.map((data, index) => {
+                return <VictoryBar
+                    key={index}
+                    data={data}
+                    x={"x"}
+                    y={"y"}
+                />
+            })}
         </VictoryStack>
     </VictoryChart>;
 }
