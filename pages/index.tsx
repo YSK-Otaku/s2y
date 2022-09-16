@@ -31,6 +31,23 @@ const Home: NextPage = () => {
             setShipData([shipData[0] ,{x: 2, y: newValue}])
         }
     };
+
+    const changeJapanProduction = (event: any, newValue: number | number[]) => {
+        if (Array.isArray(newValue)) {
+            setManufacturerData([{x: 1, y: newValue[0]}, manufacturerData[1]])
+        } else {
+            setManufacturerData([{x: 1, y: newValue}, manufacturerData[1]])
+        }
+    };
+
+    const changeAmericaProduction = (event: any, newValue: number | number[]) => {
+        if (Array.isArray(newValue)) {
+            setManufacturerData( [manufacturerData[0] ,{x: 2, y: newValue[0]}])
+        } else {
+            setManufacturerData([manufacturerData[0] ,{x: 2, y: newValue}])
+        }
+    };
+
     return (
         <>
         <Grid container spacing={2} direction="row" justifyContent="space-evenly" alignItems="stretch">
@@ -47,6 +64,14 @@ const Home: NextPage = () => {
             <Grid item xs={10}>
                 <Typography variant={"h6"}>アメリカ輸送コスト</Typography>
                 <Slider value={shipData[1].y} onChange={changeAmericaShip}　valueLabelDisplay="on" defaultValue={defaultShipData[1].y} min={0} max={5000}/>
+            </Grid>
+            <Grid item xs={10}>
+                <Typography variant={"h6"}>日本生産コスト</Typography>
+                <Slider value={manufacturerData[0].y} onChange={changeJapanProduction}　valueLabelDisplay="on" defaultValue={defaultMaterialData[0].y} min={0} max={5000}/>
+            </Grid>
+            <Grid item xs={10}>
+                <Typography variant={"h6"}>アメリカ輸送コスト</Typography>
+                <Slider value={manufacturerData[1].y} onChange={changeAmericaProduction}　valueLabelDisplay="on" defaultValue={defaultMaterialData[1].y} min={0} max={5000}/>
             </Grid>
         </Grid>
 
